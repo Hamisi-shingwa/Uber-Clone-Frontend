@@ -1,10 +1,17 @@
 // This component will fire ones only when app is opened for the first time 
+// Here am call NativeStacknavigationProp to allow typescript to knw type of navigation
+
 
 import {View, ImageBackground,StyleSheet, Button,TouchableWithoutFeedback,Text } from "react-native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import AntDesign from '@expo/vector-icons/AntDesign';
 
+type GetNavigation = {
+    navigation: NativeStackNavigationProp<any, any>
+}
 
-export  function GetStart(){
+
+export  function GetStart({navigation}: GetNavigation){
 return(
     <View style={Styles.container}>
     <View style={Styles.topOverlay}>
@@ -14,7 +21,7 @@ return(
     <Text style={Styles.title}>Get Started With Uber</Text>
 
     <View style={Styles.Viewbtn}>
-    <TouchableWithoutFeedback ><View style={Styles.btnText}><Text style={{color:"#fff",  fontWeight: 'bold',
+    <TouchableWithoutFeedback onPress={()=>navigation.navigate('Mobile')} ><View style={Styles.btnText}><Text style={{color:"#fff",  fontWeight: 'bold',
     fontSize:20}}>Continue</Text></View></TouchableWithoutFeedback>
     <AntDesign name="arrowright" size={24}  color="white"/>
     </View>
