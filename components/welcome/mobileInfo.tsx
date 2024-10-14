@@ -3,6 +3,7 @@ import { StyleSheet,View,Text,TextInput,Image,TouchableOpacity,
     TouchableWithoutFeedback,
    
  } from "react-native";
+ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Gstyle } from "../style/globalstyle";
 import AntDesign from '@expo/vector-icons/AntDesign';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
@@ -17,6 +18,10 @@ type OauthValue = {
     key: any
 }
 
+type navigator = {
+    navigation: NativeStackNavigationProp<any, any>
+}
+
 // This function bellow return a list of shortcut register options ejx template
 const OAuthOption = ({names,description, key}: OauthValue)=>{
     return(
@@ -29,7 +34,7 @@ const OAuthOption = ({names,description, key}: OauthValue)=>{
     )
 }
 
-export function MobileInfo(){
+export function MobileInfo({navigation}: navigator){
     return(
         <View style={Gstyle.container}>
             <Text style={Styles.title}>Enter your mobile number</Text>
@@ -52,7 +57,7 @@ export function MobileInfo(){
           </View>
 
        {/* Button ya kucheki baada user kuingiza namba za simu husika */}
-       <TouchableOpacity style={Styles.Viewbtn}>
+       <TouchableOpacity style={Styles.Viewbtn} onPress={()=>navigation.navigate('completeInfo')}>
        <Text style={{color:"#fff",  fontWeight: 'bold',
     fontSize:20}}>Continue</Text>
        </TouchableOpacity>
