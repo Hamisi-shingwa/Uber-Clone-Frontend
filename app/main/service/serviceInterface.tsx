@@ -1,4 +1,4 @@
-import {StyleSheet, View,Text,Image } from "react-native";
+import {StyleSheet, View,Text,Image,TouchableWithoutFeedback,Alert } from "react-native";
 import { Gstyle } from "@/components/style/globalstyle";
 import { useRideData } from "./ridecontext";
 
@@ -6,6 +6,10 @@ import { useRideData } from "./ridecontext";
 
 export function ServiceInterface(){
     const {data} = useRideData()
+
+    const HandleService = (id:number)=> {
+             Alert.alert("OOP..!",`Time to handle activity id ${id} is yet`) 
+    }
    
     return(
         <View style={[Gstyle.container]}>
@@ -32,13 +36,15 @@ export function ServiceInterface(){
                         imageSource = require("../../../assets/images/Uberimages/boda.png");
                         break;
                       default:
-                        imageSource = require("../../../assets/images/Uberimages/promo.png"); // Default image
+                        imageSource = require("../../../assets/images/Uberimages/promo.png"); 
                     }
                     return(
                         <View style={Styles.availableservice} key={dt.id}>
-                            <View style={[Styles.carImg,Gstyle.border]}>
+                            <TouchableWithoutFeedback onPress={()=>HandleService(dt.id)}>
+                            <View style={[Styles.carImg]}>
                               <Image style={Styles.UriImage} source={imageSource}/>
                             </View>
+                            </TouchableWithoutFeedback>
                             <Text>{dt.name}</Text>
                         </View>
                     )
