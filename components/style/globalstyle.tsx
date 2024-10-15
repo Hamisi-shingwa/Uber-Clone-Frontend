@@ -29,5 +29,9 @@ export const Gstyle = StyleSheet.create({
     title:{
         fontSize:34,
         fontWeight:'bold'
+    },
+    imgfull:{
+        width:'100%',
+        height:'100%'
     }
 })
