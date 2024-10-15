@@ -27,7 +27,7 @@ export default function TabMain() {
           if (route.name === 'Home') {
             iconName = focused ? 'home' : 'home';
           } else if (route.name === 'Service') {
-            iconName = focused ? 'creditcard' : 'creditcard';
+            iconName = focused ? 'appstore-o' : 'appstore-o';
           } else if (route.name === 'Activity') {
             iconName = focused ? 'book' : 'book';
           } else if (route.name === 'Profile') {
