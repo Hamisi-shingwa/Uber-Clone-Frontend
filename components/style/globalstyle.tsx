@@ -22,5 +22,12 @@ export const Gstyle = StyleSheet.create({
     },
     flexRow:{
         flexDirection:'row'
+    },
+    bg:{
+        backgroundColor:'#E0E0E0',
+    },
+    title:{
+        fontSize:34,
+        fontWeight:'bold'
     }
 })
