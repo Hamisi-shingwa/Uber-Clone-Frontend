@@ -1,7 +1,8 @@
 import React,{useState} from "react";
-import { StyleSheet, View,Text,TextInput,Image,TouchableWithoutFeedback,Linking } from "react-native";
+import { StyleSheet, View,Text,TextInput,Image,TouchableWithoutFeedback,Linking,Alert } from "react-native";
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { StoreUserAgreement } from "./storeagreeinfo";
 import Checkbox from 'expo-checkbox'
 import { Gstyle } from "../style/globalstyle";
 
@@ -17,6 +18,10 @@ export default function AgreeTerms({navigation}:navigator){
     const OpenTerms = ()=>{
        Linking.openURL("https://www.uber.com/legal/en/")
     }
+//Below is logic to use localstorage to check if user is agree terms
+
+StoreUserAgreement(isChecked)
+
 
     const InputHandler = ()=>{
         // handle change input
@@ -59,6 +64,8 @@ export default function AgreeTerms({navigation}:navigator){
         <TouchableWithoutFeedback onPress={()=>navigation.navigate('Mobile')} >
           <AntDesign name="arrowleft" size={24} color="black" />
           </TouchableWithoutFeedback>
+          
+          {/* Bellow React View component will rendered depend on checkbox info */}
          {isChecked?(
              <View style={Styles.Viewbtn}>
              <TouchableWithoutFeedback style={Styles.btnText} onPress={()=>navigation.navigate('Mobile')} ><View ><Text style={{color:"#fff",  fontWeight: 'bold',
