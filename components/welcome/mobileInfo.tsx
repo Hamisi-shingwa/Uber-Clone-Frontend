@@ -131,7 +131,7 @@ const Styles = StyleSheet.create({
 
     },
     Viewbtn:{
-        marginTop: 5,
+     marginTop: 5,
     justifyContent:'center',
     alignItems:'center',
     backgroundColor:'#000',
