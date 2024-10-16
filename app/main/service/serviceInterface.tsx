@@ -1,14 +1,18 @@
 import {StyleSheet, View,Text,Image,TouchableWithoutFeedback,Alert } from "react-native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Gstyle } from "@/components/style/globalstyle";
 import { useRideData } from "./ridecontext";
 
 
-
-export function ServiceInterface(){
-    const {data} = useRideData()
+type navigatioProp = {
+  navigation: NativeStackNavigationProp<any, any>
+}
+export function ServiceInterface({navigation}: navigatioProp){
+    const {data} = useRideData() 
+    
 
     const HandleService = (id:number)=> {
-             Alert.alert("OOP..!",`Time to handle activity id ${id} is yet`) 
+             navigation.navigate('planride',{value:"hellow"})
     }
    
     return(
