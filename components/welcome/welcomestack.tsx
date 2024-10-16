@@ -5,13 +5,15 @@ import { MobileInfo } from "./mobileInfo";
 import { GetStart } from "./getstart";
 import AgreeTerms from './acceptTermsandCondition';
 import CompleteInfo from './completeInfo';
+import TabMain from '@/app/main/main';
+import { RegContextProvider } from './user_info_context';
 
 const {Screen, Navigator} = createNativeStackNavigator()
 
 export default function WelcomeStacks(){
 
     return(
-      
+      <RegContextProvider>
           <Navigator
           screenOptions={{
             headerShown: false,
@@ -23,7 +25,9 @@ export default function WelcomeStacks(){
             <Screen name="Mobile" component={MobileInfo}/>
             <Screen name="completeInfo" component={CompleteInfo}/>
             <Screen name="AgreeTerms" component={AgreeTerms}/>
+            <Screen name="main" component={TabMain}/>
           </Navigator>
+          </RegContextProvider>
      
     )
 }
