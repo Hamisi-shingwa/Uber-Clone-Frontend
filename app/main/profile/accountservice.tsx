@@ -35,15 +35,6 @@ export function AccountInfo(){
                 </View>
             </View>
            </TouchableWithoutFeedback>
-           <TouchableWithoutFeedback>
-           <View style={[Styles.infodetails]}>
-                <View><MaterialIcons name="family-restroom" size={20} color="black" /></View>
-                <View style={Styles.textView}>
-                    <Text style={{fontWeight:'bold'}}>Family</Text>
-                    <Text style={{color:'grey'}}>Manage a family profile</Text>
-                </View>
-            </View>
-           </TouchableWithoutFeedback>
       {createEJXTemplate({jina:"message",title:"message"})}
       {createEJXTemplate({jina:"message",title:"message"})}
       {createEJXTemplate({jina:"message",title:"message"})}
