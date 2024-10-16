@@ -61,14 +61,14 @@ StoreUserAgreement(isChecked)
         </View>
 
         <View style={[Styles.BottomView,Gstyle.dbetween]}>
-        <TouchableWithoutFeedback onPress={()=>navigation.navigate('Mobile')} >
+        <TouchableWithoutFeedback onPress={()=>navigation.navigate('completeInfo')} >
           <AntDesign name="arrowleft" size={24} color="black" />
           </TouchableWithoutFeedback>
           
           {/* Bellow React View component will rendered depend on checkbox info */}
          {isChecked?(
              <View style={Styles.Viewbtn}>
-             <TouchableWithoutFeedback style={Styles.btnText} onPress={()=>navigation.navigate('Mobile')} ><View ><Text style={{color:"#fff",  fontWeight: 'bold',
+             <TouchableWithoutFeedback style={Styles.btnText} onPress={()=>navigation.navigate('main')} ><View ><Text style={{color:"#fff",  fontWeight: 'bold',
              fontSize:20}}>Next</Text></View></TouchableWithoutFeedback>
              <AntDesign name="arrowright" size={24}  color="white"/>
              </View>
