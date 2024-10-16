@@ -1,7 +1,8 @@
-import { StyleSheet, View,Text,TextInput,Image,TouchableWithoutFeedback } from "react-native";
+import { StyleSheet, View,Text,TextInput,Image,TouchableWithoutFeedback,Alert } from "react-native";
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Gstyle } from "../style/globalstyle";
+import { useRegData } from "./user_info_context";
 
 type navigator = {
     navigation: NativeStackNavigationProp<any, any>
@@ -9,16 +10,30 @@ type navigator = {
 
 export default function CompleteInfo({navigation}:navigator){
 
-    const InputHandler = ()=>{
-        // handle change input
+    //lets call my reg context
+    const {data,  setData} = useRegData()
+
+
+    const InputHandler = (name:string, value:string)=>{
+        setData(prevData=>({...prevData, [name]: value}))
+        console.log(data)
     }
+    const submitData = () => {
+        if (data.firstname === "" || data.lastname === "") {
+            Alert.alert("OOP", "Let us know your first name and last name.");
+        } else {
+            navigation.navigate('AgreeTerms');
+        }
+    };
+    
+    
     return(
        <View  style={[ Gstyle.container]}>
         <Text style={Styles.title}>Give more information about you</Text>
         <View style={[Styles.boxView]}>
            <View style={Styles.userName}>
-            <TextInput placeholder="first name" style={[Gstyle.border,Styles.textInput]} onChangeText={(val)=> InputHandler() }/>
-            <TextInput placeholder="first name" style={[Gstyle.border,Styles.textInput]} onChangeText={(val)=> InputHandler() }/>
+            <TextInput placeholder="first name"  style={[Gstyle.border,Styles.textInput]} onChangeText={(val)=> InputHandler("firstname",val) }/>
+            <TextInput placeholder="first name"  style={[Gstyle.border,Styles.textInput]} onChangeText={(val)=> InputHandler("lastname",val) }/>
            </View>
      {/* View for list of Country and coutry code */}
      <View style={[Styles.generalCountryandphone, Gstyle.dbetween,]}>
@@ -32,7 +47,9 @@ export default function CompleteInfo({navigation}:navigator){
 {/* View for Phonebox */}
 <View style={[Styles.phoneBox,Gstyle.dbetween,Gstyle.border]}>
    <Text>+255</Text>
-   <TextInput placeholder="Mobile number" keyboardType="numeric" style={Styles.numInput}/>
+   <TextInput placeholder="Mobile number" value={data.mobile.toString()}
+   onChangeText={()=>Alert.alert("SORRY","press arrow back of you need to updata your contact")}
+   keyboardType="numeric" style={Styles.numInput}/>
 </View>
 </View>
 
@@ -44,7 +61,9 @@ export default function CompleteInfo({navigation}:navigator){
           <AntDesign name="arrowleft" size={24} color="black" />
           </TouchableWithoutFeedback>
           <View style={Styles.Viewbtn}>
-    <TouchableWithoutFeedback  style={Styles.btnText} onPress={()=>navigation.navigate('AgreeTerms')} ><View><Text style={{color:"#fff",  fontWeight: 'bold',
+
+        {/* THis button also am used it as submit user registration information */}
+    <TouchableWithoutFeedback  style={Styles.btnText} onPress={()=>submitData()} ><View><Text style={{color:"#fff",  fontWeight: 'bold',
     fontSize:20}}>Next</Text></View></TouchableWithoutFeedback>
     <AntDesign name="arrowright" size={24}  color="white"/>
     </View>

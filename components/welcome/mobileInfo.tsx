@@ -1,12 +1,13 @@
 import React from "react";
 import { StyleSheet,View,Text,TextInput,Image,TouchableOpacity,
-    TouchableWithoutFeedback,
-   
- } from "react-native";
+    TouchableWithoutFeedback,Alert
+   } from "react-native";
  import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Gstyle } from "../style/globalstyle";
 import AntDesign from '@expo/vector-icons/AntDesign';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import { useRegData } from "./user_info_context";
+import Toast from 'react-native-toast-message';
 
 
 // lets us require clear google icon images match with that image on Uber app
@@ -35,6 +36,28 @@ const OAuthOption = ({names,description, key}: OauthValue)=>{
 }
 
 export function MobileInfo({navigation}: navigator){
+     //lets call my reg context
+     const {data,  setData} = useRegData()
+
+
+     //function to obtain contact
+     const getContact = (mobile:number)=>{
+       setData((prevData)=>({...prevData, mobile}))
+       console.log(data)
+     }
+
+//let handler user contact
+const userContactHander = ()=>{
+   if(data.mobile==0){
+    Alert.alert("WRONG-ACTION","fill out your mobile number first  👋")
+   }else if(data.mobile.toString().length !=9){
+    const length = data.mobile.toString().length
+    Alert.alert("WRONG-ACTION",`phone number can not have legth of ${length} write correct number exclude zero at start 👋`)
+   }else{
+    navigation.navigate("completeInfo")
+   }
+    
+}
     return(
         <View style={Gstyle.container}>
             <Text style={Styles.title}>Enter your mobile number</Text>
@@ -51,13 +74,17 @@ export function MobileInfo({navigation}: navigator){
               {/* View for Phonebox */}
                 <View style={[Styles.phoneBox,Gstyle.dbetween,Gstyle.border]}>
                    <Text>+255</Text>
-                   <TextInput placeholder="Mobile number" keyboardType="numeric"/>
+                   <TextInput 
+                   placeholder="Mobile number" 
+                   keyboardType="numeric"
+                   onChangeText={(val)=>getContact(Number(val))}
+                   />
                    <MaterialIcons name="person-search" size={24} color="black" />
                 </View>
           </View>
 
        {/* Button ya kucheki baada user kuingiza namba za simu husika */}
-       <TouchableOpacity style={Styles.Viewbtn} onPress={()=>navigation.navigate('completeInfo')}>
+       <TouchableOpacity style={Styles.Viewbtn} onPress={userContactHander}>
        <Text style={{color:"#fff",  fontWeight: 'bold',
     fontSize:20}}>Continue</Text>
        </TouchableOpacity>
