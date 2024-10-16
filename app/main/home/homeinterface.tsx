@@ -1,9 +1,15 @@
 import { StyleSheet,Text,View,TouchableWithoutFeedback,Image } from "react-native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { SearchLocation } from "./searchlocation";
 import { Promos } from "./promo";
 import { Gstyle } from "@/components/style/globalstyle";
+
+
+type Navigationn = {
+    navigation: NativeStackNavigationProp<any, any>
+}
  
-export function HomeInterface(){
+export function HomeInterface({navigation}: Navigationn){
     const Opennav = function(){}
     return(
         <View style={[Gstyle.container]}>
@@ -14,7 +20,7 @@ export function HomeInterface(){
              {/* suggestion value */}
              <View style={[Styles.suggestEl,Gstyle.dbetween]}>
                     <Text style={{fontWeight:'bold',fontSize:20}}>Suggestions</Text>
-                    <Text>See all</Text>
+                    <TouchableWithoutFeedback onPress={()=>navigation.navigate("ServiceInterface")}><Text>See all</Text></TouchableWithoutFeedback>
                     {/* */}
                 </View>
                 {/* Custome appearence */}
@@ -25,7 +31,7 @@ export function HomeInterface(){
             </View>
         </TouchableWithoutFeedback>
 
-        <TouchableWithoutFeedback onPress={()=>Opennav()}>
+        <TouchableWithoutFeedback onPress={()=>navigation.navigate("planreserve",{value:"hellow"})}>
             <View style={[Styles.searchcontainer, Gstyle.bg ]}>
                <Image style={Styles.Uimage2} source={require("../../../assets/images/Uberimages/reserve.png") }/>
             </View>
