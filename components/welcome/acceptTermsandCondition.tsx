@@ -5,6 +5,9 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { StoreUserAgreement } from "./storeagreeinfo";
 import Checkbox from 'expo-checkbox'
 import { Gstyle } from "../style/globalstyle";
+import { useRegData } from "./user_info_context";
+import { StoreUserDetails } from "./storeuserinfor";
+
 
 type navigator = {
     navigation: NativeStackNavigationProp<any, any>
@@ -12,16 +15,23 @@ type navigator = {
 
 export default function AgreeTerms({navigation}:navigator){
 
-    // lets us create usestate to handle checkbox value
+    //  usestate to handle checkbox value
     const [isChecked, setIsChecked] = useState(false)
+
+    // our data from useRegData  context
+    const {data} = useRegData()
 
     const OpenTerms = ()=>{
        Linking.openURL("https://www.uber.com/legal/en/")
     }
 //Below is logic to use localstorage to check if user is agree terms
 
-StoreUserAgreement(isChecked)
+ StoreUserAgreement(isChecked)
 
+const mainProceed = async ()=>{
+    await StoreUserDetails(data)
+    navigation.navigate('main')
+}
 
     const InputHandler = ()=>{
         // handle change input
@@ -68,7 +78,7 @@ StoreUserAgreement(isChecked)
           {/* Bellow React View component will rendered depend on checkbox info */}
          {isChecked?(
              <View style={Styles.Viewbtn}>
-             <TouchableWithoutFeedback style={Styles.btnText} onPress={()=>navigation.navigate('main')} ><View ><Text style={{color:"#fff",  fontWeight: 'bold',
+             <TouchableWithoutFeedback style={Styles.btnText} onPress={()=>mainProceed()} ><View ><Text style={{color:"#fff",  fontWeight: 'bold',
              fontSize:20}}>Next</Text></View></TouchableWithoutFeedback>
              <AntDesign name="arrowright" size={24}  color="white"/>
              </View>
