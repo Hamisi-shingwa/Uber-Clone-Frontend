@@ -1,26 +1,40 @@
-import { View, StyleSheet, TouchableWithoutFeedback,Image,Alert } from "react-native";
+import React from "react";
+import { View, StyleSheet, TouchableWithoutFeedback, Image, Alert } from "react-native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { useNavigation } from "@react-navigation/native";
 import { Gstyle } from "@/components/style/globalstyle";
 
-export function SearchLocation() {
-    const OpenModel = ()=>{
-        Alert.alert("WAIT","functionality to handle loctaion is stil not available")
-    }
+// Define the navigation prop type
+interface NavigationProps {
+    navigation: NativeStackNavigationProp<any, any>;
+}
+
+// You can also define the component to accept navigation as a prop
+const SearchLocation: React.FC<NavigationProps> = ({ navigation }) => {
+    const openModel = () => {
+        Alert.alert("WAIT", "Functionality to handle location is still not available");
+    };
+
     return (
-        <TouchableWithoutFeedback onPress={()=>OpenModel()}>
-            <View style={[Styles.searchcontainer, Gstyle.bg]}>
-               <Image style={Styles.Uimage} source={require("../../../assets/images/Uberimages/seaechlocation.png") }/>
+        <TouchableWithoutFeedback onPress={() => navigation.navigate("pickLocation")}>
+            <View style={[styles.searchContainer, Gstyle.bg]}>
+                <Image style={styles.uImage} source={require("../../../assets/images/Uberimages/searchlocation.png")} />
             </View>
         </TouchableWithoutFeedback>
     );
-}
+};
 
-const Styles = StyleSheet.create({
-    searchcontainer: {
+// StyleSheet
+const styles = StyleSheet.create({
+    searchContainer: {
         height: '90%',
         borderRadius: 20,
     },
-    Uimage:{
-        width:'100%',
-        height:'100%'
-    }
+    uImage: {
+        width: '100%',
+        height: '100%',
+    },
 });
+
+// Export the component
+export default SearchLocation;
