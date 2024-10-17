@@ -13,5 +13,5 @@
     "**/*.tsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts"
-, "app/main/main.js", "app/main/service/service.js", "app/main/home/home.js"  ]
+, "app/main/main.js", "app/main/service/service.js", "app/main/home/home.js", "app/main/profile/profileinterface.js", "app/main/profile/profileinterface.js", "components/welcome/auth/googleauth.js"  ]
 }
