@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, TouchableWithoutFeedback, Image } from "react-native";
+import { StyleSheet, Text, View, Alert, TouchableOpacity, TouchableWithoutFeedback, Image } from "react-native";
 import MapView, { Marker } from 'react-native-maps';
 import { Gstyle } from "@/components/style/globalstyle";
 import AntDesign from '@expo/vector-icons/AntDesign';
@@ -29,6 +29,10 @@ export function ComfirmRide({ route, navigation }: Props) {
     const handleServiceClick = (id: number) => {
         setSelectedService(id); 
     };
+     //handler comfirmation
+     const handlerComfirm = ()=>{
+        Alert.alert("THANK YOU","We found a near by ride, we will communicate with you within a few moment")
+      }
 
     return (
         <View style={styles.container}>
@@ -125,7 +129,7 @@ export function ComfirmRide({ route, navigation }: Props) {
                 </TouchableWithoutFeedback>
 
                 {/* Confirm Button */}
-                <TouchableOpacity style={styles.button} onPress={() => gotoComfirm("Hellow")}>
+                <TouchableOpacity style={styles.button} onPress={() => handlerComfirm()}>
                     <Text style={styles.buttonText}>Confirm Ride</Text>
                 </TouchableOpacity>
             </View>
