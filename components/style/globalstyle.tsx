@@ -3,8 +3,9 @@ import { StyleSheet } from "react-native";
 export const Gstyle = StyleSheet.create({
     container:{
         flex: 1,
-        margin: 15
-       
+        margin: 15,
+        height:'100%'
+        
     },
     dbetween:{
         justifyContent:'space-between',
