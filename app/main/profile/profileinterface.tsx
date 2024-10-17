@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableWithoutFeedback, Alert, Image, ScrollView } from "react-native";
+import { View, Text, StyleSheet, TouchableWithoutFeedback, Alert, Image, ScrollView ,Linking} from "react-native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Gstyle } from "@/components/style/globalstyle";
 import Ionicons from "@expo/vector-icons/Ionicons";
@@ -7,11 +7,10 @@ import { User } from "./user";
 import { AccountInfo } from "./accountservice";
 import { useNavigation } from "@react-navigation/native";
 
-//Import required images
+// Import required images
 const blue = require("../../../assets/images/Uberimages/profile/blue.png");
 const round = require("../../../assets/images/Uberimages/profile/round.png");
 const upright = require("../../../assets/images/Uberimages/profile/upright.png");
-
 
 type paramList = {
   payment: undefined;
@@ -21,7 +20,6 @@ type paramList = {
 
 type NavigationProp = NativeStackNavigationProp<paramList>;
 
-// Define Instruction type
 type Instructions = {
   name: any;
   size: number;
@@ -33,12 +31,14 @@ const checkupHandler = (values: number) => {
   Alert.alert("WAIT", `Functionality to handle service ${values} will be configured soon`);
 };
 
-// This function will return JSX of Instruction service to minimize length of code
+// Instruction component
 const Instservice = ({ name, size, title }: Instructions) => {
   const navigation = useNavigation<NavigationProp>(); 
 
   const serviceHandler = (values: string) => {
     if (values === "Payment") navigation.navigate("payment");
+    if (values === "Activity") navigation.navigate("Activity");
+    if (values === "Help") Linking.openURL("https://help.uber.com/en/");
   };
 
   return (
@@ -51,7 +51,6 @@ const Instservice = ({ name, size, title }: Instructions) => {
   );
 };
 
-// Define CheckUp type
 type CheckUp = {
   id: number;
   title: string;
@@ -59,7 +58,7 @@ type CheckUp = {
   image: any;
 };
 
-// Function for check-up container
+// Check-up component
 const CreateEJXcheckup = ({ id, title, description, image }: CheckUp) => {
   return (
     <TouchableWithoutFeedback onPress={() => checkupHandler(id)}>
@@ -82,21 +81,21 @@ export function ProfileInterface() {
 
   return (
     <View style={[Gstyle.container]}>
-      <ScrollView contentContainerStyle={Styles.ScrollViewstyes}>
+      <ScrollView contentContainerStyle={Styles.scrollContainer} showsVerticalScrollIndicator={false}>
         <User />
-        {/* view for instructions info */}
+        {/* Instructions */}
         <View style={[Styles.InstContainer, Gstyle.dbetween]}>
           {Instservice({ name: "caret-down-circle-outline", size: 34, title: "Help" })}
           {Instservice({ name: "card", size: 34, title: "Payment" })}
           {Instservice({ name: "bus", size: 34, title: "Activity" })}
         </View>
 
-        {/* Views for other services */}
+        {/* Checkup section */}
         <View style={[Styles.userCheckup]}>
           {CreateEJXcheckup({
             id: 1,
-            title: "You have multiple promo",
-            description: "We'll automatically apply the one that saves you",
+            title: "You have multiple promos",
+            description: "We'll automatically apply the one that saves you the most.",
             image: blue,
           })}
           {CreateEJXcheckup({
@@ -113,22 +112,21 @@ export function ProfileInterface() {
           })}
         </View>
 
-        {/* Below template for display account info */}
+        {/* Account Info */}
         <AccountInfo />
       </ScrollView>
     </View>
   );
 }
 
-// Stylesheet definition
 const Styles = StyleSheet.create({
-  ScrollViewstyes: {
+  scrollContainer: {
     flexGrow: 1,
     paddingVertical: 20,
   },
   InstContainer: {
     flexDirection: "row",
-    height: "14%",
+    height: 100, 
     marginTop: 20,
   },
   instruction: {
@@ -137,19 +135,21 @@ const Styles = StyleSheet.create({
     borderRadius: 5,
   },
   userCheckup: {
-    height: "60%",
+    paddingVertical: 20,
   },
   checkupContainer: {
     width: "100%",
-    height: "27%",
+    height: 100, 
     borderRadius: 5,
     flexDirection: "row",
     marginTop: 15,
   },
-  leftcheckup: {},
+  leftcheckup: {
+    flex: 1,
+  },
   rightcheckup: {
-    width: "20%",
-    height: "50%",
+    width: 80, 
+    height: 80, 
     marginTop: 20,
   },
 });
