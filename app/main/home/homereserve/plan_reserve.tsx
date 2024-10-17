@@ -2,13 +2,12 @@ import React, { useEffect, useState } from "react";
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from "react-native";
 import MapView, { Marker } from 'react-native-maps';
-import { Gstyle } from "@/components/style/globalstyle";
 import AntDesign from '@expo/vector-icons/AntDesign';
 
 type ParamList = {
     plan_ride: { value: string };  
     homeinterface: undefined;  
-    comfirmreserve:{info:string}
+    timelyReserve:{info:string}
 };
 
 type Props = NativeStackScreenProps<ParamList, 'plan_ride'>;
@@ -20,7 +19,7 @@ export default function PlanReserve({ route, navigation }: Props) {
     const [location, setLocation] = useState<string>(value || ""); 
 
     const gotoComfirm = (location:string)=>{
-         navigation.navigate("comfirmreserve",{info:"Hellow"})
+         navigation.navigate("timelyReserve",{info:"Hellow"})
     }
 
  return (
@@ -52,8 +51,7 @@ export default function PlanReserve({ route, navigation }: Props) {
             <View style={styles.inputContainer}>
                 {/* TextInput for location */}
                 <TextInput 
-                    style={styles.input} 
-                    value={location} 
+                    style={styles.input}  
                     onChangeText={setLocation} 
                     placeholder="Enter location"
                 />
