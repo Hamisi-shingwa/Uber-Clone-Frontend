@@ -43,7 +43,7 @@ export function MobileInfo({navigation}: navigator){
      //function to obtain contact
      const getContact = (mobile:number)=>{
        setData((prevData)=>({...prevData, mobile}))
-       console.log(data)
+
      }
 
 //let handler user contact

@@ -16,7 +16,7 @@ export default function CompleteInfo({navigation}:navigator){
 
     const InputHandler = (name:string, value:string)=>{
         setData(prevData=>({...prevData, [name]: value}))
-        console.log(data)
+       
     }
     const submitData = () => {
         if (data.firstname === "" || data.lastname === "") {
@@ -79,7 +79,8 @@ const Styles =StyleSheet.create({
        
     },
     boxView:{
-        height:'88%'
+        height:'84%',
+        marginTop:10
       
     },
     userName:{
