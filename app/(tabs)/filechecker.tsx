@@ -6,7 +6,7 @@ import TabMain from "../main/main";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export  function CheckFile(){
-    const [isNewUser, setIsNewUser] = useState(true);
+    const [isNewUser, setIsNewUser] = useState(false);
     //check if user agree term and condition
 
     const chekTermsagreement = async ()=>{
@@ -22,11 +22,12 @@ export  function CheckFile(){
     },[])
 
     if(isNewUser){
-        // return <TabMain/>  
-        return <WelcomeStacks/>  
+       
+        // return <WelcomeStacks/>  
             }else{
+                return <TabMain/>  
                 // return <TabMain/>  
-                return <WelcomeStacks/>  
+                // return <WelcomeStacks/>  
             }
 
 }
