@@ -1,6 +1,6 @@
 import { StyleSheet,Text,View,TouchableWithoutFeedback,Image } from "react-native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { SearchLocation } from "./searchlocation";
+import  SearchLocation  from "./searchlocation";
 import { Promos } from "./promo";
 import { Gstyle } from "@/components/style/globalstyle";
 
@@ -10,17 +10,21 @@ type Navigationn = {
 }
  
 export function HomeInterface({navigation}: Navigationn){
-    const Opennav = function(){}
+    
+
+    const Opennav = function(){
+        navigation.navigate('Service', { screen: 'planride', params: { info:"helow" } })
+    }
     return(
         <View style={[Gstyle.container]}>
             <Text style={Gstyle.title}>Uber</Text>
             <View style={[Styles.schlocation]}>
-                <SearchLocation/>   
+               <SearchLocation navigation={navigation} /> 
             </View>
              {/* suggestion value */}
              <View style={[Styles.suggestEl,Gstyle.dbetween]}>
                     <Text style={{fontWeight:'bold',fontSize:20}}>Suggestions</Text>
-                    <TouchableWithoutFeedback onPress={()=>navigation.navigate("ServiceInterface")}><Text>See all</Text></TouchableWithoutFeedback>
+                    <TouchableWithoutFeedback onPress={()=>navigation.navigate("Service")}><Text>See all</Text></TouchableWithoutFeedback>
                     {/* */}
                 </View>
                 {/* Custome appearence */}
