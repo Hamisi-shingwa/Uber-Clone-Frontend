@@ -2,6 +2,7 @@ import { useState,useEffect } from "react";
 import { View,Text,StyleSheet,Image } from "react-native";
 import { Gstyle } from "@/components/style/globalstyle";
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 //Import required  images in this component
 const profile = require("../../../assets/images/Uberimages/profile/profile.png")
@@ -12,6 +13,13 @@ const profile = require("../../../assets/images/Uberimages/profile/profile.png")
 export function User(){
     //Logic to view user details
     const [user, setUser] = useState(false);
+
+    //get user detalils
+    const getuserInfo = async ()=>{
+      const datas = await AsyncStorage.getItem('users')
+   
+
+    }
 
     return( 
         <View style={[Styles.userContainer,Gstyle.dbetween]}>
