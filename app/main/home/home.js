@@ -4,12 +4,11 @@
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { HomeInterface } from './homeinterface';
-import { PlanRide } from './homereserve/timely_reserve';
 import { Promos } from './promo';
 import { Service } from '../service/service';
 import PlanReserve from './homereserve/plan_reserve';
 import { ComfirmReserve } from './homereserve/confirm';
-
+import TimelyReserve from './homereserve/timely_reserve';
 
 const {Screen, Navigator} = createNativeStackNavigator()
 
@@ -25,12 +24,11 @@ export  function Home(){
           }}
           >
             <Screen name="homeinterface" component={HomeInterface}/>
-            <Screen name="planride" component={PlanRide}/>
             <Screen name="promos" component={Promos}/>
             <Screen name="planreserve" component={PlanReserve}/>
             <Screen name="comfirmreserve" component={ComfirmReserve}/>
             <Screen name="service" component={Service}/>
-       
+            <Screen name="timelyReserve" component={TimelyReserve}/>
           </Navigator>
      
     )
