@@ -7,6 +7,7 @@ import AgreeTerms from './acceptTermsandCondition';
 import CompleteInfo from './completeInfo';
 import TabMain from '@/app/main/main';
 import { RegContextProvider } from './user_info_context';
+import CheckConnection from './check_conection';
 
 const {Screen, Navigator} = createNativeStackNavigator()
 
@@ -21,6 +22,7 @@ export default function WelcomeStacks(){
             
           }}
           >
+            <Screen name="checkconnection" component={CheckConnection}/>
             <Screen name="Start" component={GetStart}/>
             <Screen name="Mobile" component={MobileInfo}/>
             <Screen name="completeInfo" component={CompleteInfo}/>
