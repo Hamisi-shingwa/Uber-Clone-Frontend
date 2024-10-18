@@ -3,6 +3,7 @@ import { View, Text, ActivityIndicator, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import NetInfo from '@react-native-community/netinfo';
 
+
 const CheckConnection = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isConnected, setIsConnected] = useState<boolean>(false); 
@@ -21,7 +22,7 @@ const CheckConnection = () => {
   useEffect(() => {
     if (!isLoading) {
       if (isConnected) {
-        navigation.navigate('Start'); 
+        navigation.navigate('homeinterface'); 
       } else {
         Alert.alert('No Internet Connection', 'Please check your internet connection and try again.');
       }
