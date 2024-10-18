@@ -7,15 +7,7 @@ import { ThemedText } from '@/components/ThemedText'
 import { GetStart } from '@/components/welcome/getstart'
 
 export default  function HomeScreen(){
-  return(
-    
-      <ThemedView style={Styles.container}>
-       <CheckFile/>
-    </ThemedView>
-  
-    
-  )
-
+  return
  
 }
 const Styles = StyleSheet.create({
